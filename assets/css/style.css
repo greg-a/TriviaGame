@@ -1,34 +1,140 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Just Another Hand', cursive;
-    font-size: 1.5em;
+    font-size: 1.25em;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* position: relative; */
+    background: url(../images/movie-reel-background.png);
+    background-size: 130%;
+    background-position: 100% 0;
+    background-repeat: repeat-x;
+    animation: animate 5s linear infinite;
+}
+
+body:after {
+    content: "";
+    background-image: url(../images/graininess3.jpg);
+    height: 300%;
+    width: 300%;
+    opacity: 0.1;
+    position: fixed;
+    animation: grain 10s steps(10) infinite;
+    left: -50%;
+    top: -110%;
 }
 
 h1 {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
-    margin-top: 50px;
+    padding-top: 175px;
+    margin-bottom: 20px;
+    font-size: 3em;
 }
 
-div {
-    text-align: center;
-    margin: 50px;
-}
+@keyframes grain {
+    0%, 100% { transform:translate(0, 0) }
+    10% { transform:translate(-5%, -10%) }
+    20% { transform:translate(-15%, 5%) }
+    30% { transform:translate(7%, -25%) }
+    40% { transform:translate(-5%, 25%) }
+    50% { transform:translate(-15%, 10%) }
+    60% { transform:translate(15%, 0%) }
+    70% { transform:translate(0%, 15%) }
+    80% { transform:translate(3%, 35%) }
+    90% { transform:translate(-10%, 10%) }
+  }
 
 .button {
-    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.button button {
-    margin-top: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height:100px;
+    margin-top: 150px;
 }
 
 .option {
     border: 2px solid black;
-    margin: 5px;
+    z-index: 1;
+    width: 200px;
+    position: relative;
+}
+
+.question-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    position:relative;
+    top: -55px;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 .option:hover {
     background-color: navy;
     cursor: pointer;
+}
+
+.start-button {
+    background: #E1E2E4 url(../images/start-button.jpg);
+    position: absolute;
+    background-size: cover;
+    width:100px;
+    margin: 0;
+    height: 100px;
+    border-radius: 140px;
+    z-index:1;    
+}
+
+.button-text {
+    z-index: 2;
+    position: relative;
+    left: -2px;
+    top: 3px;
+    height: 0;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.start-button:hover, .button-text:hover {
+    cursor: pointer;
+}
+
+.start-button:hover {
+    animation: spin 2s linear infinite;    
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.countdown {
+    background: url(../images/coutdown.png);
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: none;
+}
+
+h2 {
+    color: #ffffff;
+    position: relative;
+    top: 45px;
+    margin-bottom: 50px;
 }

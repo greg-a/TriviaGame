@@ -1,3 +1,6 @@
+// add more questions 
+// style countdown
+
 var correctGuesses = 0;
 var incorrectGuesses = 0;
 var unansweredQuestions = 0;
@@ -54,14 +57,17 @@ var answerInt = 0;
 var intervalId;
 
 function clearPage() {
-    $("h1, h2, .button, .countdown, .question, .choices").empty();
+    $(".button, h2").remove();
+    $("h1, .countdown, .question, .choices").empty();
 }
 
 function nextQuestion(newQuestion) {
 
     if (answerInt !== questions.length) {
         startTimer();
-        $(".countdown").html(countDown);
+        
+        $(".countdown").show();
+        $(".countdown").html("<h2>" + countDown);
         var newQ = $(".question").append("<div>");
         var newCh1 = $("<div class='option'></div>");
         var newCh2 = $("<div class='option'></div>");
@@ -77,9 +83,23 @@ function nextQuestion(newQuestion) {
         $(".choices").append(newCh2);
         $(".choices").append(newCh3);
         $(".choices").append(newCh4);
+
+        $(".option").on("click", function(){
+            if (this.textContent === questions[answerInt].answer) {
+                correctAnswer();
+            }
+            else {
+                wrongAnswer();
+            }
+        })
+        
     }
     else {
         // create page that shows totals and button to restart
+        $("h1").text("Your Stats");
+        $(".countdown").text("Correct: " + correctGuesses);
+        $(".question").text("Wrong: " + incorrectGuesses);
+        $(".choices").text("Timed Out: " + unansweredQuestions);
     }
 }
 
@@ -95,22 +115,22 @@ function stopTimer() {
 function decrement() {
     
     countDown--;
-
     $(".countdown").html("<h2>" + countDown + "</h2>");
+    
 
-    if (countDown === 0) {
-        stopTimer();
-        clearPage();  
-        $("h1").text("Time is up!");
-        $(".question").append("The correct answer was: " + questions[answerInt].answer);
-        unansweredQuestions++;
-        answerInt++;
-        setTimeout(function() {
-            countDown = 5;
-            clearPage();
-            nextQuestion(questions[answerInt]);
-        }, 3000);
-    }
+    // if (countDown === 0) {
+    //     stopTimer();
+    //     clearPage();  
+    //     $("h1").text("Time is up!");
+    //     $(".question").append("The correct answer was: " + questions[answerInt].answer);
+    //     unansweredQuestions++;
+    //     answerInt++;
+    //     setTimeout(function() {
+    //         countDown = 5;
+    //         clearPage();
+    //         nextQuestion(questions[answerInt]);
+    //     }, 3000);
+    // }
 }
 
 function wrongAnswer() {
@@ -121,6 +141,11 @@ function wrongAnswer() {
     $(".question").append("The correct answer was: " + questions[answerInt].answer);
     incorrectGuesses++;
     answerInt++;
+    setTimeout(function() {
+        countDown = 5;
+        clearPage();
+        nextQuestion(questions[answerInt]);
+    }, 3000);
 }
 
 function correctAnswer() {
@@ -131,23 +156,16 @@ function correctAnswer() {
     $(".countdown").append("That's Correct!");
     correctGuesses++;
     answerInt++;
+    setTimeout(function() {
+        countDown = 5;
+        clearPage();
+        nextQuestion(questions[answerInt]);
+    }, 3000);
 }
 
-$("#start-button").on("click", function() {
-
-
+$(".button").on("click", function() {
     clearPage();
     nextQuestion(questions[answerInt]);
-    $(".option").on("click", function(){
-        if (this.textContent === questions[answerInt].answer) {
-            correctAnswer();
-            setTimeout(clearPage, 3000);
-        }
-        else {
-            wrongAnswer();
-            setTimeout(clearPage, 3000);
-        }
-    })
 })
-
+    
 

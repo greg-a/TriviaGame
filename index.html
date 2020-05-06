@@ -5,28 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Just+Another+Hand|Permanent+Marker&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
-    <!-- // create start screen with a start button
-// after starting, show question with multiple choice and countdown from 30 seconds
-// create three scenarios: 1) correct guess(shows congratulation for 3 seconds), 2) incorrect guess, 3) timeout
-// end screen that shows: correct tally, incorrect tally, and unanswered tally.
-// start over button that starts new round of questions  -->
-
-<h1>The Trivia Game</h1>
-
-<div class="button">
-    <button class="button" id="start-button">Start</button>
-</div>
-
 <div class="container">
-    <div class="countdown"></div>
-    <div class="question"></div>
-    <div class="choices"></div>
+    <div class="header">
+        <h1>Movie Trivia</h1>
+    </div>
+
+    <div class="button">
+        <div class="button-text">Start</div>
+        <div class="start-button"></div>
+    </div>
+
+    <div class="question-section">
+        <div class="countdown"></div>
+        <div class="question"></div>
+        <div class="choices"></div>
+    </div>
 </div>
 
     <script src="assets/javascript/app.js"></script>
