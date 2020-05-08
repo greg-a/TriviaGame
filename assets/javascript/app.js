@@ -1,64 +1,40 @@
-// add more questions 
-// style countdown
-
 var correctGuesses = 0;
 var incorrectGuesses = 0;
 var unansweredQuestions = 0;
-var countDown = 5;
+var countDown = 10;
 var questions = [
     questionA = {
-        question: "What is 2 + 2?",
-        answer: "4",
-        options: [
-            line1 = {
-                box: $("<div class='option'>"),
-                option: "8"
-            },
-            line2 = {
-                box: $("<div class='option'>"),
-                option: "12"
-            },
-            line3 = {
-                box: $("<div class='option'>"),
-                option: "4"
-            },
-            line4 = {
-                box: $("<div class='option'>"),
-                option: "2"
-            },
-            
-        ]
+        question: "In which American city does Ferris Beuller’s Day Off take place??",
+        answer: "Chicago",
+        options: ["Philadelphia", "New York", "Boston", "Chicago"],
+        pic: [$("<img src='assets/images/bueller.gif' style='width:250px; height:150px'>"), $("<img src='assets/images/saveferris.jpg' style='width:250px; height:150px'>")]
     },
     questionB = {
-        question: "What is 2 x 8?",
-        answer: "16",
-        options: [
-            line1 = {
-                box: $("<div class='option'>"),
-                option: "8"
-            },
-            line2 = {
-                box: $("<div class='option'>"),
-                option: "12"
-            },
-            line3 = {
-                box: $("<div class='option'>"),
-                option: "4"
-            },
-            line4 = {
-                box: $("<div class='option'>"),
-                option: "16"
-            },
-            
-        ]
-    }    
-]
+        question: "What type of business did Annie have that failed in Bridesmaids?",
+        answer: "Bakery",
+        options: ["Bakery", "Subway", "Gift Shop", "Landscaping"],
+        pic: [$("<img src='assets/images/wiig.jpg' style='width:250px; height:150px'>"), $("<img src='assets/images/sorry.jpg' style='width:250px; height:150px'>")]
+    },
+    questionC = {
+        question: "What has Jason Bourne lost at the start of The Bourne Ultimatum?",
+        answer: "His Memory",
+        options: ["His Car", "His Dignity", "His Memory", "His Fighting Skills"],
+        pic: [$("<img src='assets/images/bournepic.jpg' style='width:250px; height:150px'>"), $("<img src='assets/images/bourne.gif' style='width:250px; height:150px'>")]
+    },
+    questionD = {
+        question: "Which 1997 film stars Nicolas Cage, John Cusack, and John Malkovich?",
+        answer: "Con Air",
+        options: ["Con Air", "Face/Off", "Gone in 60 Seconds", "The Rock"],
+        pic: [$("<img src='assets/images/niccage.jpg' style='width:250px; height:150px'>"), $("<img src='assets/images/conair.jpg' style='width:250px; height:150px'>")]
+    }
+];
 var answerInt = 0;
 var intervalId;
 
 function clearPage() {
-    $(".button, h2").remove();
+    $(".button, h2, .header").remove();
     $("h1, .countdown, .question, .choices").empty();
+    $(".countdown").hide();
 }
 
 function nextQuestion(newQuestion) {
@@ -67,7 +43,7 @@ function nextQuestion(newQuestion) {
         startTimer();
         
         $(".countdown").show();
-        $(".countdown").html("<h2>" + countDown);
+        $(".countdown").html("<h3>" + countDown);
         var newQ = $(".question").append("<div>");
         var newCh1 = $("<div class='option'></div>");
         var newCh2 = $("<div class='option'></div>");
@@ -75,10 +51,10 @@ function nextQuestion(newQuestion) {
         var newCh4 = $("<div class='option'></div>");
 
         newQ.append(newQuestion.question);
-        newCh1.text(newQuestion.options[0].option);
-        newCh2.append(newQuestion.options[1].option);
-        newCh3.append(newQuestion.options[2].option);
-        newCh4.append(newQuestion.options[3].option);
+        newCh1.text(newQuestion.options[0]);
+        newCh2.append(newQuestion.options[1]);
+        newCh3.append(newQuestion.options[2]);
+        newCh4.append(newQuestion.options[3]);
         $(".choices").append(newCh1);
         $(".choices").append(newCh2);
         $(".choices").append(newCh3);
@@ -90,16 +66,32 @@ function nextQuestion(newQuestion) {
             }
             else {
                 wrongAnswer();
+                incorrectGuesses++;
+                $(".question").html("<h2>Wrong Answer</h2>");
             }
         })
         
     }
     else {
-        // create page that shows totals and button to restart
-        $("h1").text("Your Stats");
-        $(".countdown").text("Correct: " + correctGuesses);
-        $(".question").text("Wrong: " + incorrectGuesses);
-        $(".choices").text("Timed Out: " + unansweredQuestions);
+        
+        var correctTotal = $("<div>");
+        var incorrectTotal = $("<div>");
+        var timeTotal = $("<div>");
+        var restartButton = $("<div>");
+
+        $(".countdown").hide();
+        $(".question").html("<h2>Your Stats</h2>");
+        correctTotal.text("Correct: " + correctGuesses);
+        incorrectTotal.text("Incorrect: " + incorrectGuesses);
+        timeTotal.text("Timed Out: " + unansweredQuestions);
+        $(".choices").append(correctTotal);
+        $(".choices").append(incorrectTotal);
+        $(".choices").append(timeTotal);
+
+        restartButton.addClass("button");
+        restartButton.append("<div class='button-text'>Restart</div>");
+        restartButton.append("<div class='start-button'></div>");
+        $(".question-section").append(restartButton);
     }
 }
 
@@ -115,34 +107,25 @@ function stopTimer() {
 function decrement() {
     
     countDown--;
-    $(".countdown").html("<h2>" + countDown + "</h2>");
+    $(".countdown").html("<h3>" + countDown + "</h3>");
     
 
-    // if (countDown === 0) {
-    //     stopTimer();
-    //     clearPage();  
-    //     $("h1").text("Time is up!");
-    //     $(".question").append("The correct answer was: " + questions[answerInt].answer);
-    //     unansweredQuestions++;
-    //     answerInt++;
-    //     setTimeout(function() {
-    //         countDown = 5;
-    //         clearPage();
-    //         nextQuestion(questions[answerInt]);
-    //     }, 3000);
-    // }
+    if (countDown === 0) {
+        wrongAnswer();
+        unansweredQuestions++;
+        $(".question").html("<h2>Time is up!</h2>");
+    }
 }
 
 function wrongAnswer() {
     stopTimer();
+    clearPage();
     $(".option").remove();
-    $(".question").empty();
-    $("h1").append("Wrong Answer");
-    $(".question").append("The correct answer was: " + questions[answerInt].answer);
-    incorrectGuesses++;
+    $(".question").empty();    
+    $(".choices").append(questions[answerInt].pic[1]);    
     answerInt++;
     setTimeout(function() {
-        countDown = 5;
+        countDown = 10;
         clearPage();
         nextQuestion(questions[answerInt]);
     }, 3000);
@@ -150,20 +133,26 @@ function wrongAnswer() {
 
 function correctAnswer() {
     stopTimer();
+    clearPage();
     $(".option").remove();
     $(".question").empty();
     clearInterval(intervalId);
-    $(".countdown").append("That's Correct!");
+    $(".question").html("<h2>That's Correct!</h2>");
+    $(".choices").append(questions[answerInt].pic[0]);
     correctGuesses++;
     answerInt++;
     setTimeout(function() {
-        countDown = 5;
+        countDown = 10;
         clearPage();
         nextQuestion(questions[answerInt]);
     }, 3000);
 }
 
-$(".button").on("click", function() {
+$(document).on("click", ".button", function() {
+    unansweredQuestions = 0;
+    correctGuesses = 0;
+    incorrectGuesses = 0;
+    answerInt = 0;
     clearPage();
     nextQuestion(questions[answerInt]);
 })
