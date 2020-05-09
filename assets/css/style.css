@@ -1,14 +1,9 @@
-html {
-    height: 100%;
-}
-
 body {
     font-family: 'Just Another Hand', cursive;
     font-size: 1.25em;
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    /* position: relative; */
     background: url(../images/movie-reel-background.png);
     background-size: 130%;
     background-position: 100% 0;
@@ -26,6 +21,20 @@ body:after {
     animation: grain 10s steps(10) infinite;
     left: -50%;
     top: -110%;
+}
+
+h3 {
+    color: #ffffff;
+    position: relative;
+    top: 45px;
+    margin-bottom: 50px;
+}
+
+h2 {
+    position: relative;
+    top: 45px;
+    margin-bottom: 50px;
+    font-size: 2em;
 }
 
 h1 {
@@ -73,6 +82,7 @@ h1 {
     position:absolute;
     padding-top: 8%;
     left: 45%;
+    font: 1.8em;
 }
 
 .choices {
@@ -101,9 +111,10 @@ h1 {
 .button-text {
     z-index: 2;
     position: relative;
-    left: -2px;
-    top: 3px;
+    left: 1px;
+    top: 6px;
     height: 0;
+    font-size: .9em;
 }
 
 .container {
@@ -132,19 +143,6 @@ h1 {
     display: none;
 }
 
-h3 {
-    color: #ffffff;
-    position: relative;
-    top: 45px;
-    margin-bottom: 50px;
-}
-
-h2 {
-    position: relative;
-    top: 45px;
-    margin-bottom: 50px;
-    font-size: 2em;
-}
 
 .header {    
     position:absolute;    
