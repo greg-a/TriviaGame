@@ -25,7 +25,7 @@ var questions = [
         question: "Which 1997 film stars Nicolas Cage, John Cusack, and John Malkovich?",
         answer: "Con Air",
         options: ["Con Air", "Face/Off", "Gone in 60 Seconds", "The Rock"],
-        pic: [$("<img src='assets/images/niccage.jpg' style='width:250px; height:150px'>"), $("<img src='assets/images/conair.jpg' style='width:250px; height:150px'>")]
+        pic: [$("<img src='assets/images/niccage.jpg' style='width:250px; height:150px'>"), $("<img src='assets/images/ConAir.jpg' style='width:250px; height:150px'>")]
     }
 ];
 var answerInt = 0;
