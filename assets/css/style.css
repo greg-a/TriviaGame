@@ -158,3 +158,22 @@ h1 {
         left: 40%;
     }
 }
+@media only screen and (max-width: 640px) {
+    body {
+        background-size: 100%;
+        background-position: auto;
+    }
+
+    .header {
+        left: 10%;
+        margin: auto;
+    }
+
+    .question-section {
+        left: 10%;
+    }
+
+    .question-section {
+        margin-top:105px;    
+    }
+}
